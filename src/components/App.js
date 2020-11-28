@@ -154,7 +154,8 @@ const states = [
   },
 ];
 
-
+let i=0;
+let j=0;
 function App() {
   const [selectedIndex,setSelectedIndex]=useState(-1);
   const [selectedIndext,setSelectedIndext]=useState(-1);
@@ -169,7 +170,7 @@ function App() {
 		{
 			states.map((item,index)=>(
 				<li key={index}>
-          <button id={"state"+(index+1)} onClick={()=>{setSelectedIndex(index);setSelectedIndext(-1);}}>{item.name}</button>
+          <button id={"state"+(index+1)} onClick={()=>{setSelectedIndex(index);setSelectedIndext(-1);i++; if(i%2==0){setSelectedIndex(-1);}}}>{item.name}</button>
           {
 						(selectedIndex===index)?
             <>
@@ -177,7 +178,7 @@ function App() {
               
                { item.cities.map((value,number)=>(
                   <li key={number}>
-                    <button id={"city"+(number+1)} onClick={()=>{setSelectedIndext(number);}} >{value.name}</button>
+                    <button id={"city"+(number+1)} onClick={()=>{setSelectedIndext(number);j++; if(j%2==0){setSelectedIndext(-1);}}} >{value.name}</button>
                     {
                         (selectedIndext===number)?
                         <>
