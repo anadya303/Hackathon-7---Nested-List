@@ -154,8 +154,57 @@ const states = [
   },
 ];
 
+
 function App() {
-  return <div id="main"></div>;
+  const [selectedIndex,setSelectedIndex]=useState(-1);
+  const [selectedIndext,setSelectedIndext]=useState(-1);
+
+  const change = ()=> {
+    setSelectedIndex(-1);
+  }
+
+  
+  return <div id="main">
+     <ol>
+		{
+			states.map((item,index)=>(
+				<li key={index}>
+          <button id={"state"+(index+1)} onClick={()=>{setSelectedIndex(index);setSelectedIndext(-1);}}>{item.name}</button>
+          {
+						(selectedIndex===index)?
+            <>
+            <ol>
+              
+               { item.cities.map((value,number)=>(
+                  <li key={number}>
+                    <button id={"city"+(number+1)} onClick={()=>{setSelectedIndext(number);}} >{value.name}</button>
+                    {
+                        (selectedIndext===number)?
+                        <>
+                        <ol>
+                          {
+                            value.towns.map((valuet,numbert)=>(
+                              <li key={numbert}>
+                                <button id={"town"+(numbert+1)} onClick={change}>{valuet.name}</button>
+                              </li>
+                            ))
+                          }
+                        </ol>
+                        </>
+                        : null
+                    }
+                  </li>
+                ))}
+               
+               </ol>
+						</>
+            : null
+          }
+				</li>
+			))
+		}
+		</ol>
+  </div>;
 }
 
 export default App;
